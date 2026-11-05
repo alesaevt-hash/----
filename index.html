@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#16734b">
+<meta name="description" content="Школа здорового питания гимназии №80 города Астаны">
+<title>Школа здорового питания</title>
+
+<style>
+:root {
+  --green:#16734b;
+  --dark:#104c35;
+  --light:#eaf7ef;
+  --white:#fff;
+  --text:#24352c;
+  --muted:#718078;
+  --border:#dce9df;
+  --shadow:0 8px 30px rgba(20,70,45,.09);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:var(--text);
+  background:#f7faf7;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+header{
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 2px 15px #0000000c;
+}
+.nav{
+  max-width:1150px;
+  margin:auto;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:bold;
+  color:var(--green);
+}
+.brand img{
+  width:48px;height:48px;
+  object-fit:contain;
+  border-radius:12px;
+}
+.brand span{font-size:15px}
+nav{display:flex;gap:17px;flex-wrap:wrap}
+nav a{
+  color:var(--text);
+  text-decoration:none;
+  font-size:14px;
+  font-weight:bold;
+}
+nav a:hover{color:var(--green)}
+.menuBtn{
+  display:none;
+  border:0;background:var(--light);
+  color:var(--green);padding:10px 13px;
+  border-radius:10px;
+}
+.container{max-width:1150px;margin:auto;padding:0 20px}
+.hero{
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  background:linear-gradient(100deg,#0c4934ed,#16734bba),
+  url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1600') center/cover;
+  color:white;
+}
+.heroContent{max-width:750px;padding:70px 20px}
+.hero h1{font-size:clamp(32px,6vw,55px);margin:0 0 18px}
+.hero p{font-size:19px;line-height:1.6}
+.btn{
+  display:inline-block;
+  border:0;border-radius:11px;
+  padding:13px 19px;
+  background:var(--green);
+  color:white;font-weight:bold;
+  text-decoration:none;
+}
+.btn:hover{filter:brightness(.93)}
+.btn.light{background:white;color:var(--green)}
+.btn.red{background:#bd3939}
+.btn.gray{background:#e9efeb;color:#34483b}
+section{padding:65px 0}
+.sectionTitle{text-align:center;margin:0 0 35px}
+.sectionTitle h2{font-size:30px;color:var(--dark);margin:0 0 10px}
+.sectionTitle p{color:var(--muted);margin:0}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
+}
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:17px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.cardBody{padding:22px}
+.card h3{margin:0 0 12px;color:var(--dark)}
+.card p{line-height:1.6;color:#607066}
+.icon{
+  font-size:32px;
+  margin-bottom:12px;
+}
+.aboutText{
+  max-width:850px;margin:auto;
+  line-height:1.8;text-align:center;
+  font-size:17px;
+}
+.teacher{
+  max-width:800px;margin:auto;
+  display:flex;align-items:center;gap:25px;
+  background:white;padding:25px;
+  border-radius:18px;box-shadow:var(--shadow);
+}
+.teacherPhoto{
+  width:130px;height:130px;
+  flex-shrink:0;border-radius:50%;
+  background:var(--light);
+  display:grid;place-items:center;
+  font-size:50px;overflow:hidden;
+}
+.teacherPhoto img{width:100%;height:100%;object-fit:cover}
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:16px;
+}
+.photo{
+  background:white;border-radius:14px;
+  overflow:hidden;box-shadow:var(--shadow);
+}
+.photo img{
+  display:block;width:100%;height:220px;
+  object-fit:cover;background:#e7eee8;
+}
+.photoCaption{padding:12px;font-size:14px}
+.newsList{display:grid;gap:15px;max-width:850px;margin:auto}
+.newsItem{
+  padding:20px;background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+}
+.newsItem h3{margin:0 0 10px;color:var(--dark)}
+.newsDate{font-size:12px;color:var(--muted);margin-bottom:9px}
+.tips{background:var(--light)}
+footer{
+  padding:30px 20px;
+  text-align:center;
+  background:#103f2d;color:#e4f4e9;
+  line-height:1.7;
+}
+.adminOpen{
+  position:fixed;bottom:18px;right:18px;
+  width:48px;height:48px;border:0;
+  border-radius:50%;background:var(--green);
+  color:white;font-size:20px;
+  box-shadow:var(--shadow);z-index:20;
+}
+.modal{
+  position:fixed;inset:0;
+  background:#0009;z-index:30;
+  display:none;overflow:auto;
+  padding:20px;
+}
+.modal.show{display:block}
+.modalBox{
+  max-width:760px;margin:35px auto;
+  background:white;border-radius:18px;
+  padding:25px;box-shadow:var(--shadow);
+}
+.modalHead{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;
+}
+.close{
+  border:0;background:#edf3ee;
+  border-radius:9px;padding:9px 13px;
+}
+.field{margin:14px 0}
+.field label{
+  display:block;font-weight:bold;
+  margin-bottom:7px;font-size:14px;
+}
+.field input,.field textarea,.field select{
+  width:100%;padding:12px;
+  border:1px solid #cbd9ce;
+  border-radius:9px;background:white;
+}
+.field textarea{min-height:90px;resize:vertical}
+.adminPanel{display:none}
+.adminPanel.show{display:block}
+.adminTabs{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin:20px 0;
+}
+.adminTabs button{
+  border:0;border-radius:9px;
+  background:var(--light);color:var(--green);
+  padding:10px 13px;font-weight:bold;
+}
+.adminTabs button.active{background:var(--green);color:white}
+.tab{display:none}
+.tab.active{display:block}
+.adminPhoto{
+  display:flex;gap:12px;align-items:center;
+  border:1px solid var(--border);
+  padding:10px;border-radius:10px;margin:10px 0;
+}
+.adminPhoto img{
+  width:75px;height:65px;object-fit:cover;
+  border-radius:8px;
+}
+.adminPhoto .info{flex:1;min-width:0}
+.adminPhoto small{display:block;color:var(--muted);overflow-wrap:anywhere}
+.status{
+  padding:12px;border-radius:10px;
+  margin:12px 0;display:none;
+  line-height:1.5;
+}
+.status.show{display:block}
+.status.ok{background:#e4f7e9;color:#17643b}
+.status.error{background:#fdeaea;color:#9c2929}
+.status.wait{background:#fff4d9;color:#775514}
+.loading{text-align:center;color:var(--muted);padding:25px}
+.empty{
+  text-align:center;padding:30px;
+  color:var(--muted);background:white;
+  border-radius:14px;
+}
+.hidden{display:none!important}
+@media(max-width:750px){
+  .menuBtn{display:block}
+  nav{display:none;position:absolute;top:72px;left:0;right:0;
+    background:white;padding:20px;flex-direction:column;
+    box-shadow:var(--shadow)}
+  nav.open{display:flex}
+  .teacher{flex-direction:column;text-align:center}
+  section{padding:48px 0}
+  .hero{min-height:380px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img id="logo" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=100" alt="Логотип">
+      <span>ШКОЛА ЗДОРОВОГО ПИТАНИЯ</span>
+    </div>
+    <button class="menuBtn" onclick="toggleMenu()">☰ Меню</button>
+    <nav id="navigation">
+      <a href="#home" onclick="toggleMenu()">Главная</a>
+      <a href="#about" onclick="toggleMenu()">О школе</a>
+      <a href="#teacher" onclick="toggleMenu()">Педагог</a>
+      <a href="#events" onclick="toggleMenu()">Мероприятия</a>
+      <a href="#gallery" onclick="toggleMenu()">Галерея</a>
+      <a href="#tips" onclick="toggleMenu()">Советы</a>
+      <a href="#news" onclick="toggleMenu()">Новости</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container heroContent">
+      <h1>Здоровое питание — здоровое будущее!</h1>
+      <p>Формируем полезные привычки, узнаём больше о правильном питании и учимся заботиться о своём здоровье.</p>
+      <a href="#about" class="btn light">Узнать больше</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>О нашей школе</h2>
+        <p>Полезные привычки начинаются сегодня</p>
+      </div>
+      <div class="aboutText">
+        Школа здорового питания — это пространство, где ученики знакомятся
+        с основами правильного питания, учатся выбирать полезные продукты,
+        узнают о витаминах, режиме дня и важности активного образа жизни.
+        Мы проводим познавательные мероприятия, игры, викторины и встречи.
+        <br><br>
+        <b>Школа-гимназия №80 имени С. Сейфуллина, город Астана.</b>
+      </div>
+    </div>
+  </section>
+
+  <section id="teacher" style="background:#edf6ef">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Наш педагог</h2>
+        <p>Руководитель школы здорового питания</p>
+      </div>
+      <div class="teacher">
+        <div class="teacherPhoto">👩‍🏫</div>
+        <div>
+          <h2>Абдухаитова Индира Кайроллаевна</h2>
+          <p>Педагог школы здорового питания.</p>
+          <p>Помогает ученикам узнавать больше о правильном питании и формировать полезные привычки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Наши мероприятия</h2>
+        <p>Учимся, играем и узнаём новое</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="cardBody">
+            <div class="icon">🥗</div>
+            <h3>Дни здорового питания</h3>
+            <p>Знакомимся с полезными продуктами и сбалансированным рационом.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="cardBody">
+            <div class="icon">🧠</div>
+            <h3>Викторины</h3>
+            <p>Проверяем знания о витаминах, продуктах и полезных привычках.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="cardBody">
+            <div class="icon">🍎</div>
+            <h3>Творческие занятия</h3>
+            <p>Создаём интересные проекты и делимся полезными идеями.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" style="background:#edf6ef">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Наша галерея</h2>
+        <p>Фотографии с мероприятий и занятий</p>
+      </div>
+      <div id="galleryContent" class="gallery">
+        <div class="loading">Загружаем фотографии...</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tips" class="tips">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Полезные советы</h2>
+        <p>Несколько простых правил на каждый день</p>
+      </div>
+      <div class="cards">
+        <article class="card"><div class="cardBody">
+          <div class="icon">💧</div>
+          <h3>Пейте воду</h3>
+          <p>Не забывайте регулярно пить воду в течение дня.</p>
+        </div></article>
+        <article class="card"><div class="cardBody">
+          <div class="icon">🥦</div>
+          <h3>Разнообразное питание</h3>
+          <p>Старайтесь включать в рацион овощи, фрукты и разные продукты.</p>
+        </div></article>
+        <article class="card"><div class="cardBody">
+          <div class="icon">⏰</div>
+          <h3>Режим питания</h3>
+          <p>Соблюдайте регулярный режим приёма пищи.</p>
+        </div></article>
+        <article class="card"><div class="cardBody">
+          <div class="icon">🏃</div>
+          <h3>Движение</h3>
+          <p>Находите время для прогулок и физической активности.</p>
+        </div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>Новости и объявления</h2>
+        <p>Последние новости нашей школы</p>
+      </div>
+      <div id="newsContent" class="newsList">
+        <div class="loading">Загружаем новости...</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <b>Школа здорового питания</b><br>
+  Школа-гимназия №80 имени С. Сейфуллина<br>
+  г. Астана
+  <br><small>Полезные привычки — основа здорового будущего.</small>
+</footer>
+
+<button class="adminOpen" onclick="openAdmin()" title="Панель администратора">⚙</button>
+
+<div class="modal" id="adminModal">
+  <div class="modalBox">
+    <div class="modalHead">
+      <h2>Панель администратора</h2>
+      <button class="close" onclick="closeAdmin()">✕</button>
+    </div>
+
+    <div id="loginPanel">
+      <p>Введи пароль администратора.</p>
+      <div class="field">
+        <label>Пароль</label>
+        <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Пароль администратора">
+      </div>
+      <button class="btn" onclick="login()">Войти</button>
+      <div id="loginStatus" class="status"></div>
+    </div>
+
+    <div id="adminPanel" class="adminPanel">
+      <div class="adminTabs">
+        <button class="active" onclick="showTab('uploadTab',this)">Фотографии</button>
+        <button onclick="showTab('newsTab',this)">Новости</button>
+        <button onclick="showTab('manageTab',this)">Управление</button>
+      </div>
+
+      <div id="uploadTab" class="tab active">
+        <h3>Загрузить фотографию</h3>
+        <div class="field">
+          <label>Тип фотографии</label>
+          <select id="photoCategory">
+            <option value="gallery">Фотография для галереи</option>
+            <option value="hero">Главное фото</option>
+            <option value="logo">Логотип</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Выбери изображение</label>
+          <input type="file" id="photoFile" accept="image/jpeg,image/png,image/webp,image/gif">
+        </div>
+        <div class="field">
+          <label>Подпись к фотографии</label>
+          <input id="photoCaption" placeholder="Например: Мероприятие о здоровом питании">
+        </div>
+        <button class="btn" id="uploadButton" onclick="uploadPhoto()">Загрузить фотографию</button>
+        <div id="uploadStatus" class="status"></div>
+      </div>
+
+      <div id="newsTab" class="tab">
+        <h3>Добавить новость</h3>
+        <div class="field">
+          <label>Заголовок</label>
+          <input id="newsTitle" placeholder="Название новости">
+        </div>
+        <div class="field">
+          <label>Текст новости</label>
+          <textarea id="newsText" placeholder="Напиши текст новости"></textarea>
+        </div>
+        <button class="btn" onclick="addNews()">Опубликовать новость</button>
+        <div id="newsStatus" class="status"></div>
+        <h3 style="margin-top:25px">Опубликованные новости</h3>
+        <div id="adminNewsList"></div>
+      </div>
+
+      <div id="manageTab" class="tab">
+        <h3>Фотографии на сайте</h3>
+        <p style="color:#718078">Здесь можно удалить ранее загруженные фотографии.</p>
+        <div id="adminPhotosList"></div>
+        <button class="btn gray" onclick="refreshData()">Обновить данные</button>
+      </div>
+
+      <div style="margin-top:25px">
+        <button class="btn gray" onclick="logout()">Выйти из админ-панели</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================================================
+// НАСТРОЙКИ СЕРВЕРА
+// ==================================================
+
+const API_URL = 'https://script.google.com/macros/s/AKfycby8IZXi0XB1CxFHYCo-LVbusgivUOWW6WWoQ85siCHy1flk5nHuGmeXxBT4Yu3GpDfcWQ/exec';
+
+let state = {
+  photos: [],
+  news: [],
+  password: ''
+};
+
+let busy = false;
+
+// ==================================================
+// ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+// ==================================================
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#039;'
+  })[char]);
+}
+
+function showStatus(id, message, type) {
+  const el = document.getElementById(id);
+  el.textContent = message;
+  el.className = 'status show ' + type;
+}
+
+function hideStatus(id) {
+  const el = document.getElementById(id);
+  el.className = 'status';
+}
+
+function toggleMenu() {
+  document.getElementById('navigation').classList.toggle('open');
+}
+
+function openAdmin() {
+  document.getElementById('adminModal').classList.add('show');
+}
+
+function closeAdmin() {
+  document.getElementById('adminModal').classList.remove('show');
+}
+
+function showTab(id, button) {
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.adminTabs button').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  button.classList.add('active');
+}
+
+function dateText(value) {
+  if (!value) return '';
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return '';
+  return d.toLocaleDateString('ru-RU');
+}
+
+// ==================================================
+// ПОЛУЧЕНИЕ ДАННЫХ ЧЕРЕЗ JSONP
+// ==================================================
+
+function getServerData() {
+  return new Promise((resolve, reject) => {
+    const callback = 'szpCallback_' + Date.now() + '_' +
+      Math.floor(Math.random() * 100000);
+
+    const script = document.createElement('script');
+    const timer = setTimeout(() => {
+      cleanup();
+      reject(new Error('Сервер не ответил на запрос чтения'));
+    }, 15000);
+
+    function cleanup() {
+      clearTimeout(timer);
+      script.remove();
+      try { delete window[callback]; } catch(e) {}
+    }
+
+    window[callback] = data => {
+      cleanup();
+      if (!data || data.success !== true) {
+        reject(new Error('Сервер вернул неправильный ответ'));
+        return;
+      }
+      resolve(data);
+    };
+
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('Не удалось подключиться к серверу'));
+    };
+
+    script.src = API_URL + '?callback=' + callback +
+      '&_=' + Date.now();
+
+    document.body.appendChild(script);
+  });
+}
+
+// ==================================================
+// ОТПРАВКА КОМАНД НА СЕРВЕР
+// ==================================================
+
+async function postAction(payload) {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  // В режиме no-cors браузер не позволяет прочитать ответ.
+  // Поэтому проверяем результат отдельным запросом чтения.
+  return response;
+}
+
+// ==================================================
+// ОЖИДАНИЕ ПОДТВЕРЖДЕНИЯ
+// ==================================================
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function verifyChange(check, timeoutMs = 45000) {
+  const started = Date.now();
+
+  while (Date.now() - started < timeoutMs) {
+    await wait(2500);
+
+    try {
+      const data = await getServerData();
+      state.photos = data.photos || [];
+      state.news = data.news || [];
+
+      renderAll();
+
+      if (check(data)) return true;
+    } catch (e) {
+      // Продолжаем проверять сервер
+    }
+  }
+
+  return false;
+}
+
+// ==================================================
+// ВХОД В АДМИН-ПАНЕЛЬ
+// ==================================================
+
+async function login() {
+  const password = document.getElementById('adminPassword').value;
+
+  if (!password.trim()) {
+    showStatus('loginStatus', 'Введи пароль.', 'error');
+    return;
+  }
+
+  showStatus('loginStatus', 'Проверяем подключение...', 'wait');
+
+  try {
+    const data = await getServerData();
+
+    if (data.success) {
+      state.password = password;
+      document.getElementById('loginPanel').classList.add('hidden');
+      document.getElementById('adminPanel').classList.add('show');
+      hideStatus('loginStatus');
+      await refreshData();
+    }
+  } catch (e) {
+    showStatus('loginStatus', e.message, 'error');
+  }
+}
+
+function logout() {
+  state.password = '';
+  document.getElementById('adminPassword').value = '';
+  document.getElementById('loginPanel').classList.remove('hidden');
+  document.getElementById('adminPanel').classList.remove('show');
+  hideStatus('loginStatus');
+}
+
+document.getElementById('adminPassword').addEventListener('keydown', e => {
+  if (e.key === 'Enter') login();
+});
+
+// ==================================================
+// ОБРАБОТКА ФОТОГРАФИЙ
+// ==================================================
+
+function compressImage(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onerror = () => reject(new Error('Не удалось прочитать файл'));
+
+    reader.onload = () => {
+      const img = new Image();
+
+      img.onerror = () => reject(new Error('Не удалось открыть изображение'));
+
+      img.onload = () => {
+        const max = 1600;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > max || height > max) {
+          const ratio = Math.min(max / width, max / height);
+          width = Math.round(width * ratio);
+          height = Math.round(height * ratio);
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        resolve(canvas.toDataURL('image/jpeg', 0.78));
+      };
+
+      img.src = reader.result;
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadPhoto() {
+  if (busy) return;
+
+  const fileInput = document.getElementById('photoFile');
+  const file = fileInput.files[0];
+
+  if (!file) {
+    showStatus('uploadStatus', 'Сначала выбери фотографию.', 'error');
+    return;
+  }
+
+  if (!file.type.startsWith('image/')) {
+    showStatus('uploadStatus', 'Выбери файл изображения.', 'error');
+    return;
+  }
+
+  busy = true;
+  const button = document.getElementById('uploadButton');
+  button.disabled = true;
+  button.textContent = 'Подготовка фотографии...';
+
+  try {
+    showStatus('uploadStatus', 'Сжимаем фотографию...', 'wait');
+
+    const dataUrl = await compressImage(file);
+    const category = document.getElementById('photoCategory').value;
+    const caption = document.getElementById('photoCaption').value.trim();
+
+    const prefix = 'szp_' + Date.now();
+
+    const payload = {
+      action: 'upload',
+      password: state.password,
+      category: category,
+      name: prefix,
+      caption: caption,
+      dataUrl: dataUrl
+    };
+
+    showStatus('uploadStatus', 'Отправляем фотографию на Google Диск...', 'wait');
+
+    await postAction(payload);
+
+    showStatus('uploadStatus',
+      'Фотография отправлена. Ждём подтверждения от сервера...',
+      'wait');
+
+    const confirmed = await verifyChange(data =>
+      (data.photos || []).some(p =>
+        p.category === category &&
+        String(p.name || '').startsWith(prefix)
+      )
+    );
+
+    if (confirmed) {
+      showStatus('uploadStatus',
+        'Фотография успешно сохранена! Она появилась на сайте.',
+        'ok');
+
+      fileInput.value = '';
+      document.getElementById('photoCaption').value = '';
+    } else {
+      showStatus('uploadStatus',
+        'Сервер не подтвердил сохранение за 45 секунд. Проверь пароль и раздел «Выполнения» в Apps Script. Не загружай эту фотографию повторно, пока не проверим результат.',
+        'error');
+    }
+
+  } catch (error) {
+    showStatus('uploadStatus', 'Ошибка: ' + error.message, 'error');
+  } finally {
+    busy = false;
+    button.disabled = false;
+    button.textContent = 'Загрузить фотографию';
+  }
+}
+
+// ==================================================
+// НОВОСТИ
+// ==================================================
+
+async function addNews() {
+  if (busy) return;
+
+  const title = document.getElementById('newsTitle').value.trim();
+  const text = document.getElementById('newsText').value.trim();
+
+  if (!title || !text) {
+    showStatus('newsStatus', 'Заполни заголовок и текст новости.', 'error');
+    return;
+  }
+
+  busy = true;
+
+  try {
+    const item = {
+      id: 'news_' + Date.now(),
+      title: title,
+      text: text,
+      date: new Date().toISOString()
+    };
+
+    const updated = [item, ...state.news];
+
+    showStatus('newsStatus', 'Сохраняем новость...', 'wait');
+
+    await postAction({
+      action: 'saveNews',
+      password: state.password,
+      news: updated
+    });
+
+    const confirmed = await verifyChange(data =>
+      (data.news || []).some(n => n.id === item.id)
+    );
+
+    if (confirmed) {
+      document.getElementById('newsTitle').value = '';
+      document.getElementById('newsText').value = '';
+      showStatus('newsStatus', 'Новость опубликована!', 'ok');
+    } else {
+      showStatus('newsStatus', 'Сервер не подтвердил сохранение новости.', 'error');
+    }
+  } catch(e) {
+    showStatus('newsStatus', 'Ошибка: ' + e.message, 'error');
+  } finally {
+    busy = false;
+  }
+}
+
+async function deleteNews(id) {
+  if (!confirm('Удалить эту новость?')) return;
+  if (busy) return;
+
+  busy = true;
+
+  try {
+    const updated = state.news.filter(n => n.id !== id);
+
+    await postAction({
+      action: 'saveNews',
+      password: state.password,
+      news: updated
+    });
+
+    const confirmed = await verifyChange(data =>
+      !(data.news || []).some(n => n.id === id)
+    );
+
+    if (!confirmed) {
+      alert('Сервер не подтвердил удаление новости.');
+    }
+  } catch(e) {
+    alert('Ошибка: ' + e.message);
+  } finally {
+    busy = false;
+  }
+}
+
+// ==================================================
+// УДАЛЕНИЕ ФОТОГРАФИЙ
+// ==================================================
+
+async function deletePhoto(id) {
+  if (!confirm('Удалить фотографию с сайта и Google Диска?')) return;
+  if (busy) return;
+
+  busy = true;
+
+  try {
+    await postAction({
+      action: 'delete',
+      password: state.password,
+      id: id
+    });
+
+    const confirmed = await verifyChange(data =>
+      !(data.photos || []).some(p => p.id === id)
+    );
+
+    if (!confirmed) {
+      alert('Сервер не подтвердил удаление.');
+    }
+  } catch(e) {
+    alert('Ошибка: ' + e.message);
+  } finally {
+    busy = false;
+  }
+}
+
+// ==================================================
+// ОТОБРАЖЕНИЕ ГАЛЕРЕИ
+// ==================================================
+
+function renderGallery() {
+  const container = document.getElementById('galleryContent');
+
+  const photos = state.photos.filter(p =>
+    p.category === 'gallery' && p.url
+  );
+
+  if (!photos.length) {
+    container.innerHTML =
+      '<div class="empty" style="grid-column:1/-1">Пока фотографий нет. Скоро здесь появятся снимки наших мероприятий!</div>';
+    return;
+  }
+
+  container.innerHTML = photos.map(p => `
+    <article class="photo">
+      <a href="${escapeHTML(p.url)}" target="_blank" rel="noopener">
+        <img src="${escapeHTML(p.url)}" alt="${escapeHTML(p.caption || 'Фото мероприятия')}" loading="lazy">
+      </a>
+      ${p.caption ? `<div class="photoCaption">${escapeHTML(p.caption)}</div>` : ''}
+    </article>
+  `).join('');
+}
+
+// ==================================================
+// ОТОБРАЖЕНИЕ НОВОСТЕЙ
+// ==================================================
+
+function renderNews() {
+  const container = document.getElementById('newsContent');
+
+  if (!state.news.length) {
+    container.innerHTML = '<div class="empty">Пока новостей нет.</div>';
+    return;
+  }
+
+  container.innerHTML = state.news.map(n => `
+    <article class="newsItem">
+      <div class="newsDate">${escapeHTML(dateText(n.date))}</div>
+      <h3>${escapeHTML(n.title)}</h3>
+      <div style="line-height:1.7;white-space:pre-wrap">${escapeHTML(n.text)}</div>
+    </article>
+  `).join('');
+}
+
+// ==================================================
+// АДМИНСКИЕ СПИСКИ
+// ==================================================
+
+function renderAdminPhotos() {
+  const container = document.getElementById('adminPhotosList');
+
+  if (!state.photos.length) {
+    container.innerHTML = '<div class="empty">Фотографий пока нет.</div>';
+    return;
+  }
+
+  container.innerHTML = state.photos.map(p => `
+    <div class="adminPhoto">
+      <img src="${escapeHTML(p.url || '')}" alt="">
+      <div class="info">
+        <b>${escapeHTML(p.caption || p.name || 'Фотография')}</b>
+        <small>${escapeHTML(p.category)}</small>
+      </div>
+      <button class="btn red" onclick="deletePhoto('${escapeHTML(p.id)}')">Удалить</button>
+    </div>
+  `).join('');
+}
+
+function renderAdminNews() {
+  const container = document.getElementById('adminNewsList');
+
+  if (!state.news.length) {
+    container.innerHTML = '<div class="empty">Новостей пока нет.</div>';
+    return;
+  }
+
+  container.innerHTML = state.news.map(n => `
+    <div class="adminPhoto">
+      <div class="info">
+        <b>${escapeHTML(n.title)}</b>
+        <small>${escapeHTML(dateText(n.date))}</small>
+      </div>
+      <button class="btn red" onclick="deleteNews('${escapeHTML(n.id)}')">Удалить</button>
+    </div>
+  `).join('');
+}
+
+// ==================================================
+// ЛОГОТИП И ГЛАВНОЕ ФОТО
+// ==================================================
+
+function renderSpecialPhotos() {
+  const logo = state.photos.find(p => p.category === 'logo');
+  const hero = state.photos.find(p => p.category === 'hero');
+
+  if (logo && logo.url) {
+    document.getElementById('logo').src = logo.url;
+  }
+
+  if (hero && hero.url) {
+    document.querySelector('.hero').style.backgroundImage =
+      "linear-gradient(100deg,#0c4934ed,#16734b99),url('" +
+      hero.url.replace(/'/g, '') + "')";
+  }
+}
+
+// ==================================================
+// ОБНОВЛЕНИЕ ВСЕГО САЙТА
+// ==================================================
+
+function renderAll() {
+  renderGallery();
+  renderNews();
+  renderAdminPhotos();
+  renderAdminNews();
+  renderSpecialPhotos();
+}
+
+async function refreshData() {
+  try {
+    const data = await getServerData();
+
+    state.photos = data.photos || [];
+    state.news = data.news || [];
+
+    renderAll();
+    return true;
+  } catch(e) {
+    console.error(e);
+    return false;
+  }
+}
+
+// ==================================================
+// ЗАПУСК
+// ==================================================
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const ok = await refreshData();
+
+  if (!ok) {
+    document.getElementById('galleryContent').innerHTML =
+      '<div class="empty">Не удалось загрузить галерею. Обнови страницу немного позже.</div>';
+
+    document.getElementById('newsContent').innerHTML =
+      '<div class="empty">Не удалось загрузить новости.</div>';
+  }
+});
+
+// Обновляем галерею и новости периодически
+setInterval(() => {
+  refreshData();
+}, 60000);
+
+</script>
+</body>
+</html>
